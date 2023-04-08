@@ -16,8 +16,8 @@ jobs:
       id: date
       run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
  
-    - name: Change env variable
-      run: echo "::set-env name=CURRENT_DATE::${{ steps.date.outputs.date }}"
+    - name: Set environment variable
+      run: echo "{CURRENT_DATE}=${{ steps.date.outputs.date }}" >> $GITHUB_ENV
 
     - name: Set up JDK 17
       uses: actions/setup-java@v3
