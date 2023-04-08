@@ -50,7 +50,7 @@ jobs:
     - name: Create release
       uses: "marvinpinto/action-automatic-releases@latest"
       with:
-        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        repo_token: "${{ secrets.GH_TOKEN }}"
         automatic_release_tag: nightly-${{ steps.date.outputs.date }}
         title: Nightly ${{ steps.date.outputs.date }}
         release: true
