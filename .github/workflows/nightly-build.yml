@@ -43,9 +43,16 @@ jobs:
        name: moshidon-nightly.apk
        path: ./mastodon/build/outputs/apk/nightly/moshidon-nightly.apk
 
+    - name: Get current date
+      id: date
+      run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
 
-    - name: Upload Release Artifacts
-      uses: softprops/action-gh-release@v1
+    - name: Create release
+      uses: "marvinpinto/action-automatic-releases@latest"
       with:
-         files: |
-           ./mastodon/build/outputs/apk/nightly/moshidon-nightly.apk
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: nightly-${{ steps.date.outputs.date }}
+        title: Nightly ${{ steps.date.outputs.date }}
+        release: true
+        files: |
+          android/*.apk
