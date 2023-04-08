@@ -11,6 +11,13 @@ jobs:
       uses: actions/checkout@v3
       with:
         repository: LucasGGamerM/moshidon
+        
+    - name: Get current date
+      id: date
+      run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+ 
+    - name: Change env variable
+      run: echo "::set-env name=CURRENT_DATE::${{ steps.date.outputs.date }}"
 
     - name: Set up JDK 17
       uses: actions/setup-java@v3
@@ -42,10 +49,6 @@ jobs:
       with:
        name: moshidon-nightly.apk
        path: ./mastodon/build/outputs/apk/nightly/moshidon-nightly.apk
-
-    - name: Get current date
-      id: date
-      run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
 
     - name: Create release
       uses: "marvinpinto/action-automatic-releases@latest"
