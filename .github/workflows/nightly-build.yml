@@ -45,6 +45,6 @@ steps:
 
 - name: Upload Release Artifacts
   uses: softprops/action-gh-release@v1
-   with:
+  with:
      files: |
        ./mastodon/build/outputs/apk/nightly/moshidon-nightly.apk
