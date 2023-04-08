@@ -53,6 +53,6 @@ jobs:
         repo_token: "${{ secrets.GH_TOKEN }}"
         automatic_release_tag: nightly-${{ steps.date.outputs.date }}
         title: Nightly ${{ steps.date.outputs.date }}
-        release: true
+        prerelease: false
         files: |
           ./mastodon/build/outputs/apk/nightly/moshidon-nightly.apk
