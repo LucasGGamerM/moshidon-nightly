@@ -11,7 +11,11 @@ jobs:
     - name: CHeckout Moshidon Repo
       uses: actions/checkout@v3
       with:
+        fetch-depth: 0 # Required to count the commits
         repository: LucasGGamerM/moshidon
+  
+    - name: Get new commits
+      run: echo "NEW_COMMIT_COUNT=$(git log --oneline --since '24 hours ago' | wc -l)" >> $GITHUB_ENV
         
     - name: Get current date
       id: date
@@ -51,6 +55,7 @@ jobs:
 
     - name: Create release
       uses: "marvinpinto/action-automatic-releases@latest"
+      if: ${{ env.NEW_COMMIT_COUNT > 0 }}
       with:
         repo_token: "${{ secrets.GH_TOKEN }}"
         automatic_release_tag: nightly-${{ steps.date.outputs.date }}
