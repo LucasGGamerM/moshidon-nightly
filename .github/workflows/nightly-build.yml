@@ -8,10 +8,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout Appkit Repo
-      uses: actions/checkout@v3
-      with:
-        repository: grishka/appkit
+    # - name: Checkout Appkit Repo
+    #   uses: actions/checkout@v3
+    #   with:
+    #     repository: grishka/appkit
         
     - name: set up JDK 17
       uses: actions/setup-java@v3
@@ -20,14 +20,14 @@ jobs:
         distribution: 'corretto'
         cache: gradle
         
-    - name: Comment out signing config in appkits gradle file
-      run: |
-        sed -i 's/sign publishing\.publications\.release/\/\/ sign publishing.publications.release/' appkit/maven-push.gradle
-    - name: Grant execute permission for gradlew for Appkit
-      run: chmod +x gradlew
+    # - name: Comment out signing config in appkits gradle file
+    #   run: |
+    #     sed -i 's/sign publishing\.publications\.release/\/\/ sign publishing.publications.release/' appkit/maven-push.gradle
+    # - name: Grant execute permission for gradlew for Appkit
+    #   run: chmod +x gradlew
     
-    - name: Compile appkit
-      run: ./gradlew publishToMavenLocal
+    # - name: Compile appkit
+    #   run: ./gradlew publishToMavenLocal
     
     - name: CHeckout Moshidon Repo
       uses: actions/checkout@v3
