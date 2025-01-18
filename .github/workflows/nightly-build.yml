@@ -76,7 +76,7 @@ jobs:
 
     - name: Create release
       uses: "marvinpinto/action-automatic-releases@latest"
-      if: ${{ env.NEW_COMMIT_COUNT > 0 }}
+      # if: ${{ env.NEW_COMMIT_COUNT > 0 }}
       with:
         repo_token: "${{ secrets.GH_TOKEN }}"
         automatic_release_tag: nightly-${{ steps.date.outputs.date }}
