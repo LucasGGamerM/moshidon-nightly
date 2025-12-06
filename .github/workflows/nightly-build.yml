@@ -61,6 +61,10 @@ jobs:
         fileDir: './mastodon/keystore/'
         encodedString: ${{ secrets.KEYSTORE }}
 
+    - name: Nothing
+      run: |
+        touch ./local.properties
+
     - name: Build with Gradle
       run: ./gradlew assembleNightly
       env:
